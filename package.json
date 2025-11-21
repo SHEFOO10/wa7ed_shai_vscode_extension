@@ -1,10 +1,10 @@
 {
   "name": "wa7ed-shai",
-  "displayName": "wa7ed_shai",
+  "displayName": "wa7ed shai",
   "description": "a quick reminder to drink tea every 15 min",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "engines": {
-    "vscode": "^1.106.1"
+    "vscode": ">=1.50.0"
   },
   "categories": [
     "Other"
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "@types/vscode": "^1.106.1",
+    "@types/vscode": ">=1.50.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.27.0",
