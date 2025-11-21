@@ -2,7 +2,7 @@
   "name": "wa7ed-shai",
   "displayName": "wa7ed shai",
   "description": "a quick reminder to drink tea every 15 min",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": ">=1.50.0"
   },
@@ -12,9 +12,9 @@
   "publisher": "SherifHamdy",
   "icon": "assets/icon.jpg",
   "activationEvents": [
-    "onStartupFinished"
+    "onCommand:shai-reminder.playNow"
   ],
-  "main": "./dist/extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
@@ -53,5 +53,5 @@
     "type": "git",
     "url": "https://github.com/SHEFOO10/wa7ed_shai_vscode_extension"
   },
-  "dependencies": { }
+  "dependencies": {}
 }
