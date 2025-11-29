@@ -60,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
     // ====== Timer Function ======
     const startTimer = () => {
         const cfg = getConfig();
-        const minutes = cfg.get<number>("intervalMinutes") ?? 1;
+        const minutes = cfg.get<number>("intervalMinutes") ?? 30;
         const showMsg = cfg.get<boolean>("showNotifications");
 
         if (shaiInterval) {clearInterval(shaiInterval);}
@@ -83,12 +83,38 @@ export function activate(context: vscode.ExtensionContext) {
 
     // ====== Commands ======
     const playNowCmd = vscode.commands.registerCommand("shai-reminder.playNow", () => {
-        vscode.window.showInformationMessage("📢 Manual Shai Reminder!");
+        vscode.window.showInformationMessage("يكلاني واحد شاي ☕");
         playShaiSound();
     });
 
-    // Settings Webview panel
-    const settingsCmd = vscode.commands.registerCommand("shai-reminder.openSettings", async () => {
+    // Set interval command
+    const intervalCmd = vscode.commands.registerCommand("shai-reminder.setInterval", async () => {
+        const current = getConfig().get<number>("intervalMinutes") ?? 30;
+        const input = await vscode.window.showInputBox({
+            prompt: "Enter reminder interval in minutes",
+            value: current.toString(),
+            validateInput: (value) => {
+                const num = parseInt(value);
+                if (isNaN(num) || num < 30 || num > (4 * 60)) {
+                    return "معاك من 30 دقيقة لحد 240 دقيقة (4 ساعات)";
+                }
+                return null;
+            }
+        });
+
+        if (input) {
+            const minutes = parseInt(input);
+            await getConfig().update("intervalMinutes", minutes, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(` كل ${minutes} دقيقة هيفكرك تشرب شاي ☕`);
+        }
+    });
+
+     const settingsCmd = vscode.commands.registerCommand("shai-reminder.openSettings", async () => {
+        await vscode.commands.executeCommand('workbench.action.openSettings', '@ext:SherifHamdy.wa7ed-shai');
+    });
+
+    // Choose custom sound command
+    const customSoundCmd = vscode.commands.registerCommand("shai-reminder.chooseCustomSound", async () => {
         const uri = await vscode.window.showOpenDialog({
             canSelectMany: false,
             openLabel: "Choose Custom Sound",
@@ -100,7 +126,8 @@ export function activate(context: vscode.ExtensionContext) {
         if (uri && uri[0]) {
             const cfg = getConfig();
             cfg.update("customSoundPath", uri[0].fsPath, vscode.ConfigurationTarget.Global);
-            vscode.window.showInformationMessage("✅ Custom sound saved!");
+            vscode.window.showInformationMessage(" اسمع الصوت جديد هيفكرك دلوقتي");
+            playShaiSound();
         }
     });
 
@@ -111,7 +138,7 @@ export function activate(context: vscode.ExtensionContext) {
     statusBarItem.command = "shai-reminder.playNow";
     statusBarItem.show();
 
-    context.subscriptions.push(playNowCmd, settingsCmd, statusBarItem);
+    context.subscriptions.push(playNowCmd, intervalCmd, settingsCmd, customSoundCmd, statusBarItem);
 }
 
 // Cleanup

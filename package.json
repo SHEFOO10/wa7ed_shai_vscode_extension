@@ -1,8 +1,8 @@
 {
   "name": "wa7ed-shai",
   "displayName": "wa7ed shai",
-  "description": "a quick reminder to drink tea every 15 min",
-  "version": "0.0.4",
+  "description": "a quick reminder to drink tea every 30 min",
+  "version": "0.0.5",
   "engines": {
     "vscode": ">=1.50.0"
   },
@@ -20,8 +20,42 @@
       {
         "command": "shai-reminder.playNow",
         "title": "Shai Reminder: Play Sound Now"
+      },
+      {
+        "command": "shai-reminder.openSettings",
+        "title": "Shai Reminder: Open Settings"
+      },
+      {
+        "command": "shai-reminder.setInterval",
+        "title": "Shai Reminder: Set Reminder Interval"
+      },
+      {
+        "command": "shai-reminder.chooseCustomSound",
+        "title": "Shai Reminder: Choose Custom Sound"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Shai Reminder",
+      "properties": {
+        "shaiReminder.intervalMinutes": {
+          "type": "number",
+          "default": 30,
+          "minimum": 30,
+          "maximum": 240,
+          "description": "Interval in minutes between tea reminders"
+        },
+        "shaiReminder.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notification message when playing the reminder sound"
+        },
+        "shaiReminder.customSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to a custom sound file (.wav or .mp3). Leave empty to use the default sound."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
