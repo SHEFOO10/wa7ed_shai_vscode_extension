@@ -2,7 +2,7 @@
   "name": "wa7ed-shai",
   "displayName": "wa7ed shai",
   "description": "a quick reminder to drink tea every 30 min",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "engines": {
     "vscode": ">=1.50.0"
   },
