@@ -1,16 +1,16 @@
 # Wa7ed Shai - Tea Reminder Extension 🍵
 
-A friendly VS Code extension that reminds you to take a tea break every 15 minutes by playing a "يكلاني واحد شاي" sound notification.
+A friendly VS Code extension that reminds you to take a tea break every 30 minutes by playing a "يكلاني واحد شاي" sound notification.
 
 ## ✨ Features
 
-- **Automatic Reminders:** Plays a gentle sound reminder every 15 minutes to encourage you to take a break and make some tea
+- **Automatic Reminders:** Plays a gentle sound reminder every 30 minutes to encourage you to take a break and make some tea
 - **Manual Trigger:** Test the reminder anytime using the command palette with `Shai Reminder: Play Sound Now`
 - **Background Operation:** Runs quietly in the background without interrupting your workflow
 
 ## 🚀 Usage
 
-Once installed, the extension activates automatically when you open VS Code. You'll hear a friendly reminder every 15 minutes.
+Once installed, the extension activates automatically when you open VS Code. You'll hear a friendly reminder every 30 minutes.
 
 ### Manual Play
 
@@ -31,9 +31,11 @@ Long coding sessions can lead to fatigue and reduced productivity. This extensio
 
 ## ⚙️ Technical Details
 
-- Reminder interval: 15 minutes
+- Reminder interval: 30 minutes
 - Sound format: WAV (cross-platform compatible)
 - Platform: Windows (uses PowerShell SoundPlayer)
+
+
 
 ## 🤝 Contributing
 
